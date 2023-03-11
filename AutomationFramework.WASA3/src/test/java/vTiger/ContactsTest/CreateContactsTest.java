@@ -16,6 +16,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import vTiger.GenericUtilities.BaseClass;
@@ -29,12 +31,13 @@ import vTiger.ObjectRepository.CreatingNewContactPage;
 import vTiger.ObjectRepository.HomePage;
 import vTiger.ObjectRepository.OrganizationPage;
 
+@Listeners(vTiger.GenericUtilities.ListernersImplementation.class)
 public class CreateContactsTest extends BaseClass {
 
-	@Test
+	@Test(groups = "SmokeTestCase")
 	public void createContactTest() throws EncryptedDocumentException, IOException {
 		
-		String lastname = eUtils.readDataFromTheExcelSheet("Contact", 1, 0)+jUtils.getRandomNumber();
+		String lastname = eUtils.readDataFromTheExcelSheet("Contact", 1, 2)+jUtils.getRandomNumber();
 		
 		HomePage hp = new HomePage(driver);
 		hp.clickContactLink();
@@ -47,13 +50,15 @@ public class CreateContactsTest extends BaseClass {
 		
 		ContactInformationPage cip = new ContactInformationPage(driver);
 		String ContactHeader = cip.getContactHeader();
-		
-		if(ContactHeader.contains(lastname)) {
-			System.out.println("Conact created successfully");
-		}else {
-			System.out.println("Contact not created");
-		}
+		Assert.assertTrue(ContactHeader.contains(lastname));
+		System.out.println(ContactHeader+"-----"+"Create Contact is created");
+		Assert.fail();
 		
 	}
 
+	@Test(groups = "RegressionTestCase")
+	public void demo()
+	{
+		System.out.println("Demo class");
+	}
 }

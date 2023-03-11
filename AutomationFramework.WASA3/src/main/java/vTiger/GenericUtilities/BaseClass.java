@@ -16,6 +16,8 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 
 import vTiger.ObjectRepository.HomePage;
 import vTiger.ObjectRepository.LoginPage;
@@ -26,17 +28,20 @@ public class BaseClass {
 	public PropertyFileUtility pUtils = new PropertyFileUtility();
 	public JavaUtility jUtils = new JavaUtility();
 	public WebDriverUtility wUtils = new WebDriverUtility();
+	public static WebDriver sDriver;//Only for listerners
 	
 	public WebDriver driver;
 
-	@BeforeSuite
+	@BeforeSuite(groups = {"SmokeTestCase","RegressionTestCase"})
 	public void bsCongig()
 	{
 		System.out.println("Database config successfully");
 	}
 	
-	@BeforeClass
-	public void bcConfig() throws IOException
+	//@Parameters("browser")
+	//@BeforeTest
+	@BeforeClass(groups = {"SmokeTestCase","RegressionTestCase"})
+	public void bcConfig(/*String BROWSER*/) throws IOException
 	{
 		String URL = pUtils.readDataFromPropertyFile("url");
 		String BROWSER = pUtils.readDataFromPropertyFile("browser");
@@ -55,13 +60,13 @@ public class BaseClass {
 		{
 			System.out.println("Incompatible browser");
 		}
-		
+		sDriver = driver; //Only for listerners
 		wUtils.maximizeWindow(driver);
 		wUtils.waitForPage(driver);
 		driver.get(URL);
 	}
 	
-	@BeforeMethod
+	@BeforeMethod(groups = {"SmokeTestCase","RegressionTestCase"})
 	public void bmConfig() throws IOException
 	{
 		String USERNAME = pUtils.readDataFromPropertyFile("username");
@@ -72,7 +77,7 @@ public class BaseClass {
 		System.out.println("----- Login successful -----");
 	}
 	
-	@AfterMethod
+	@AfterMethod(groups = {"SmokeTestCase","RegressionTestCase"})
 	public void amConfig()
 	{
 		HomePage hp = new HomePage(driver);
@@ -80,14 +85,14 @@ public class BaseClass {
 		System.out.println("----- Logout successful -----");
 	}
 	
-	@AfterClass
+	@AfterClass(groups = {"SmokeTestCase","RegressionTestCase"})
 	public void acConfig()
 	{
 		driver.quit();
 		System.out.println("----- Browser Closed successfully -----");
 	}
 	
-	@AfterSuite
+	@AfterSuite(groups = {"SmokeTestCase","RegressionTestCase"})
 	public void asConfig()
 	{
 		System.out.println("Database close successfully");

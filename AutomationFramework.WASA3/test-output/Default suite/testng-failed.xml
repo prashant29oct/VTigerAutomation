@@ -3,13 +3,18 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="practice.TestNGPractice">
+      <class name="vTiger.ContactsTest.CreateContactsTest">
         <methods>
-          <include name="createUser"/>
-          <include name="deleteUser"/>
-          <include name="updateUser"/>
+          <include name="asConfig"/>
+          <include name="bmConfig"/>
+          <include name="amConfig"/>
+          <include name="bcConfig"/>
+          <include name="bsCongig"/>
+          <include name="createContactTest"/>
+          <include name="acConfig"/>
+          <include name="demo"/>
         </methods>
-      </class> <!-- practice.TestNGPractice -->
+      </class> <!-- vTiger.ContactsTest.CreateContactsTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

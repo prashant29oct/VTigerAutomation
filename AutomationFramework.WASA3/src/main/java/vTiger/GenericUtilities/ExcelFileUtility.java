@@ -29,5 +29,25 @@ public class ExcelFileUtility {
 		return rowCount;
 	}
 	
+	public Object[][] readMutilpleData(String Sheetname) throws EncryptedDocumentException, IOException
+	{
+		FileInputStream fis = new FileInputStream(IConstantsUtility.ExcelFilePath);
+		Workbook wb = WorkbookFactory.create(fis);
+		Sheet sh = wb.getSheet(Sheetname);
+		
+		int lastRow = sh.getLastRowNum();
+		int lastCell = sh.getRow(0).getLastCellNum();
+		
+		Object[][] data = new Object[lastRow][lastCell];
+		
+		for(int i=0; i<lastRow; i++) {
+			for(int j=0; j<lastCell; j++)
+			{
+				data[i][j] = sh.getRow(i+1).getCell(j).getStringCellValue();
+			}
+		}
+		return data;
+		
+	}
 
 }

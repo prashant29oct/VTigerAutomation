@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import vTiger.GenericUtilities.BaseClass;
@@ -46,26 +47,16 @@ public class CreateContactWithOrgTest extends BaseClass {
 		op.clickCreateOrgImage();
 		cnop.createOrg(orgName);
 		String OrgHeader = oip.getOrgHeader();
-		if(OrgHeader.contains(orgName))
-		{
-			System.out.println("Organization Created Succefully with org name is "+orgName);
-		}else
-		{
-			System.out.println("Org not created");
-		}
+		Assert.assertTrue(OrgHeader.contains(orgName));
+		System.out.println(OrgHeader+"-----"+"Orgainization Created");
+		
 		
 		hp.clickContactLink();
 		cp.clickOnCreateContactImg();
 		cncp.createNewContact(driver, lastname, orgName);
 		String ContactHeader = cip.getContactHeader();
-		if(ContactHeader.contains(lastname))
-		{
-			System.out.println("New Conatct is created with contact name is " +lastname);
-		}
-		else
-		{
-			System.out.println("New Contact is not created");
-		}
+		Assert.assertTrue(ContactHeader.contains(lastname));
+		System.out.println(ContactHeader+"------"+"Contact Created");
 		
 	}
 }
