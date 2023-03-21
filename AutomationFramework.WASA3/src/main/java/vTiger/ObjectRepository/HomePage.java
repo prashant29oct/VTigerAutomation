@@ -14,6 +14,7 @@ public class HomePage extends WebDriverUtility{
 	@FindBy(linkText = "Products") private WebElement ProductsLink;
 	@FindBy(linkText = "Contacts") private WebElement ContactsLink;
 	@FindBy(linkText = "Campaigns") private WebElement CampaignsLink;
+	@FindBy(linkText = "Quotes") private WebElement QuotesLink;
 	@FindBy(linkText =  "More") private WebElement MouseHoverToMore;
 	@FindBy(linkText = "Sign Out") private WebElement SignOutLink;
 	@FindBy(xpath = "//img[@src='themes/softed/images/user.PNG']") private WebElement MouseHoverToAdmin;
@@ -45,6 +46,11 @@ public class HomePage extends WebDriverUtility{
 		return SignOutLink;
 	}
 	
+	
+	public WebElement getQuotesLink() {
+		return QuotesLink;
+	}
+
 	public WebElement getMouseHoverToAdmin() {
 		return MouseHoverToAdmin;
 	}
@@ -66,6 +72,12 @@ public class HomePage extends WebDriverUtility{
 	
 	public void clickProductsLink() {
 		ProductsLink.click();
+	}
+	
+	public void clickQuotesLink(WebDriver driver)
+	{
+		mouseHoverAction(driver, MouseHoverToMore);
+		QuotesLink.click();
 	}
 	
 	public void clickCampaignsLink(WebDriver driver) throws InterruptedException {

@@ -2,11 +2,15 @@ package vTiger.ContactsTest;
 
 import java.io.IOException;
 
+
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
+import org.testng.Reporter;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import vTiger.GenericUtilities.BaseClass;
@@ -23,6 +27,7 @@ import vTiger.ObjectRepository.LoginPage;
 import vTiger.ObjectRepository.OrganizationInformationPage;
 import vTiger.ObjectRepository.OrganizationPage;
 
+@Listeners(vTiger.GenericUtilities.ListernersImplementation.class)
 public class CreateContactWithOrgTest extends BaseClass {
 
 	@Test
@@ -44,16 +49,28 @@ public class CreateContactWithOrgTest extends BaseClass {
 		
 		
 		hp.clickOrganizationLink();
+		Reporter.log("Click on Org link successfull");
+		
 		op.clickCreateOrgImage();
+		Reporter.log("Click on Create Org image successfull");
+		
 		cnop.createOrg(orgName);
+		Reporter.log("Create Org successfull");
+		
 		String OrgHeader = oip.getOrgHeader();
 		Assert.assertTrue(OrgHeader.contains(orgName));
 		System.out.println(OrgHeader+"-----"+"Orgainization Created");
 		
 		
 		hp.clickContactLink();
+		Reporter.log("Click on Contact link successfull");
+		
 		cp.clickOnCreateContactImg();
+		Reporter.log("Click on Create Contact Imgage successfull");
+		
 		cncp.createNewContact(driver, lastname, orgName);
+		Reporter.log("Create new Contact successfull");
+		
 		String ContactHeader = cip.getContactHeader();
 		Assert.assertTrue(ContactHeader.contains(lastname));
 		System.out.println(ContactHeader+"------"+"Contact Created");

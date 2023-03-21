@@ -1,38 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite thread-count="2" parallel="tests" name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
-  <test thread-count="2" parallel="tests" name="Test2(failed)">
-    <parameter name="browser" value="firefox"/>
+<suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="vTiger.ContactsTest.CreateContactsTest">
+      <class name="vTiger.QuotesTest.CreateQuoteTest">
         <methods>
           <include name="asConfig"/>
           <include name="bmConfig"/>
           <include name="amConfig"/>
+          <include name="createQuoteTest"/>
           <include name="bcConfig"/>
           <include name="bsCongig"/>
-          <include name="createContactTest"/>
           <include name="acConfig"/>
-          <include name="demo"/>
         </methods>
-      </class> <!-- vTiger.ContactsTest.CreateContactsTest -->
+      </class> <!-- vTiger.QuotesTest.CreateQuoteTest -->
     </classes>
-  </test> <!-- Test2(failed) -->
-  <test thread-count="2" parallel="tests" name="Test1(failed)">
-    <parameter name="browser" value="chrome"/>
-    <classes>
-      <class name="vTiger.ContactsTest.CreateContactsTest">
-        <methods>
-          <include name="asConfig"/>
-          <include name="bmConfig"/>
-          <include name="amConfig"/>
-          <include name="bcConfig"/>
-          <include name="bsCongig"/>
-          <include name="createContactTest"/>
-          <include name="acConfig"/>
-          <include name="demo"/>
-        </methods>
-      </class> <!-- vTiger.ContactsTest.CreateContactsTest -->
-    </classes>
-  </test> <!-- Test1(failed) -->
-</suite> <!-- Failed suite [Suite] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

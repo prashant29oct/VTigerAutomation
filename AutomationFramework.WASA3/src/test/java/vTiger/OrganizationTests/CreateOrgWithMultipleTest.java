@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.apache.poi.EncryptedDocumentException;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import vTiger.GenericUtilities.BaseClass;
@@ -13,6 +14,7 @@ import vTiger.ObjectRepository.HomePage;
 import vTiger.ObjectRepository.OrganizationInformationPage;
 import vTiger.ObjectRepository.OrganizationPage;
 
+@Listeners(vTiger.GenericUtilities.ListernersImplementation.class)
 public class CreateOrgWithMultipleTest extends BaseClass{
 
 	@Test(dataProvider = "getData")

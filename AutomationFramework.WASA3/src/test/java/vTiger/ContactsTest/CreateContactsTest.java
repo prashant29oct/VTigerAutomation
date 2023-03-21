@@ -17,6 +17,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -41,24 +42,21 @@ public class CreateContactsTest extends BaseClass {
 		
 		HomePage hp = new HomePage(driver);
 		hp.clickContactLink();
+		Reporter.log("Click on contact link successfull");
 		
 		ContactsPage cp = new ContactsPage(driver);
 		cp.clickOnCreateContactImg();
+		Reporter.log("Click on create contact image successfull");
 		
 		CreatingNewContactPage cncp = new CreatingNewContactPage(driver);
 		cncp.createNewContact(lastname);
+		Reporter.log("create new contact successfull");
 		
 		ContactInformationPage cip = new ContactInformationPage(driver);
 		String ContactHeader = cip.getContactHeader();
 		Assert.assertTrue(ContactHeader.contains(lastname));
 		System.out.println(ContactHeader+"-----"+"Create Contact is created");
-		Assert.fail();
+	
 		
-	}
-
-	@Test(groups = "RegressionTestCase")
-	public void demo()
-	{
-		System.out.println("Demo class");
 	}
 }
