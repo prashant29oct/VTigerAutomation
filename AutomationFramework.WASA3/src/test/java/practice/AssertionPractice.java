@@ -14,6 +14,7 @@ public class AssertionPractice {
 		Assert.assertEquals(true, false);
 		System.out.println("Step3");
 		System.out.println("Step4");
+		System.out.println("Step5");
 	}
 	
 	@Test
